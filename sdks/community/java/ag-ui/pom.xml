@@ -6,7 +6,7 @@
 
     <groupId>com.ag-ui.community</groupId>
     <artifactId>java-ag-ui</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.1-primalai.016-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>java-ag-ui</name>

@@ -12,10 +12,11 @@ import java.util.Objects;
  *                   {@code null} (optional)
  * @param rawEvent   the original event this was transformed from, or
  *                   {@code null} (optional)
+ * @param metadata   可选的事件元数据，或 {@code null}
  * @see <a href="https://docs.ag-ui.com/concepts/events">AG-UI Events</a>
  */
-public record ToolCallArgsEvent(String toolCallId, String delta, Long timestamp, Object rawEvent)
-        implements Event {
+public record ToolCallArgsEvent(String toolCallId, String delta, Long timestamp, Object rawEvent,
+                                Object metadata) implements Event {
 
     public ToolCallArgsEvent {
         Objects.requireNonNull(toolCallId, "toolCallId must not be null");
@@ -29,7 +30,7 @@ public record ToolCallArgsEvent(String toolCallId, String delta, Long timestamp,
      * @param delta      a chunk of the argument data
      */
     public ToolCallArgsEvent(String toolCallId, String delta) {
-        this(toolCallId, delta, null, null);
+        this(toolCallId, delta, null, null, null);
     }
 
     @Override

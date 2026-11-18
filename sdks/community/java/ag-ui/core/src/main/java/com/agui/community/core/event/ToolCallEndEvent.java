@@ -11,9 +11,10 @@ import java.util.Objects;
  *                   {@code null} (optional)
  * @param rawEvent   the original event this was transformed from, or
  *                   {@code null} (optional)
+ * @param metadata   可选的事件元数据，或 {@code null}
  * @see <a href="https://docs.ag-ui.com/concepts/events">AG-UI Events</a>
  */
-public record ToolCallEndEvent(String toolCallId, Long timestamp, Object rawEvent)
+public record ToolCallEndEvent(String toolCallId, Long timestamp, Object rawEvent, Object metadata)
         implements Event {
 
     public ToolCallEndEvent {
@@ -26,7 +27,7 @@ public record ToolCallEndEvent(String toolCallId, Long timestamp, Object rawEven
      * @param toolCallId the tool call identifier
      */
     public ToolCallEndEvent(String toolCallId) {
-        this(toolCallId, null, null);
+        this(toolCallId, null, null, null);
     }
 
     @Override

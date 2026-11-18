@@ -15,10 +15,11 @@ import java.util.Objects;
  *                    {@code null} (optional)
  * @param rawEvent    the original event this was transformed from, or
  *                    {@code null} (optional)
+ * @param metadata    可选的事件元数据，或 {@code null}
  * @see <a href="https://docs.ag-ui.com/concepts/events">AG-UI Events</a>
  */
 public record RunStartedEvent(String threadId, String runId, String parentRunId, Object input,
-                              Long timestamp, Object rawEvent) implements Event {
+                              Long timestamp, Object rawEvent, Object metadata) implements Event {
 
     public RunStartedEvent {
         Objects.requireNonNull(threadId, "threadId must not be null");
@@ -32,7 +33,7 @@ public record RunStartedEvent(String threadId, String runId, String parentRunId,
      * @param runId    the agent run id
      */
     public RunStartedEvent(String threadId, String runId) {
-        this(threadId, runId, null, null, null, null);
+        this(threadId, runId, null, null, null, null, null);
     }
 
     @Override

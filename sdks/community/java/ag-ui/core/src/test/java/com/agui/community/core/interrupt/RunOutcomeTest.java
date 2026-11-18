@@ -1,12 +1,13 @@
 package com.agui.community.core.interrupt;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 class RunOutcomeTest {
@@ -56,5 +57,17 @@ class RunOutcomeTest {
         assertNull(interrupt.responseSchema());
         assertNull(interrupt.expiresAt());
         assertNull(interrupt.metadata());
+    }
+
+    @Test
+    void interruptCanonicalConstructorRetainsExistingOptionalFields() {
+        Object metadata = new Object();
+        Interrupt interrupt =
+                new Interrupt("i1", "tool_call", "Proceed?", "call-1", "schema", "expires", metadata);
+
+        assertEquals("call-1", interrupt.toolCallId());
+        assertEquals("schema", interrupt.responseSchema());
+        assertEquals("expires", interrupt.expiresAt());
+        assertSame(metadata, interrupt.metadata());
     }
 }
