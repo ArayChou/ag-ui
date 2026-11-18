@@ -43,6 +43,29 @@ class MetadataEventTest {
     }
 
     @Test
+    void legacyCompleteConstructorsRemainSourceCompatibleAndLeaveMetadataNull() {
+        RunStartedEvent runStarted =
+                new RunStartedEvent("thread", "run", "parent", "input", 1L, "raw");
+        ToolCallStartEvent toolCallStart =
+                new ToolCallStartEvent("call", "search", "message", 2L, "raw");
+        ToolCallArgsEvent toolCallArgs = new ToolCallArgsEvent("call", "{}", 3L, "raw");
+        ToolCallEndEvent toolCallEnd = new ToolCallEndEvent("call", 4L, "raw");
+        ToolCallResultEvent toolCallResult =
+                new ToolCallResultEvent("result", "call", "output", Role.TOOL, 5L, "raw");
+
+        assertNull(runStarted.metadata());
+        assertNull(toolCallStart.metadata());
+        assertNull(toolCallArgs.metadata());
+        assertNull(toolCallEnd.metadata());
+        assertNull(toolCallResult.metadata());
+        assertEquals("parent", runStarted.parentRunId());
+        assertEquals("message", toolCallStart.parentMessageId());
+        assertEquals(3L, toolCallArgs.timestamp());
+        assertEquals(4L, toolCallEnd.timestamp());
+        assertEquals(Role.TOOL, toolCallResult.role());
+    }
+
+    @Test
     void metadataParticipatesInGeneratedRecordMethods() {
         RunStartedEvent first = new RunStartedEvent("thread", "run", null, null, null, null, METADATA);
         RunStartedEvent equal = new RunStartedEvent("thread", "run", null, null, null, null, METADATA);

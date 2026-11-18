@@ -21,6 +21,10 @@ public record ToolCallEndEvent(String toolCallId, Long timestamp, Object rawEven
         Objects.requireNonNull(toolCallId, "toolCallId must not be null");
     }
 
+    public ToolCallEndEvent(String toolCallId, Long timestamp, Object rawEvent) {
+        this(toolCallId, timestamp, rawEvent, null);
+    }
+
     /**
      * Creates a tool-call-end event from a tool call id.
      *

@@ -29,6 +29,11 @@ public record ToolCallResultEvent(String messageId, String toolCallId, String co
         Objects.requireNonNull(content, "content must not be null");
     }
 
+    public ToolCallResultEvent(String messageId, String toolCallId, String content, Role role,
+                               Long timestamp, Object rawEvent) {
+        this(messageId, toolCallId, content, role, timestamp, rawEvent, null);
+    }
+
     /**
      * Creates a tool-call-result event with the required fields.
      *

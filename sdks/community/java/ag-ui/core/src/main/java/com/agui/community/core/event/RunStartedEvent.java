@@ -26,6 +26,11 @@ public record RunStartedEvent(String threadId, String runId, String parentRunId,
         Objects.requireNonNull(runId, "runId must not be null");
     }
 
+    public RunStartedEvent(String threadId, String runId, String parentRunId, Object input,
+                            Long timestamp, Object rawEvent) {
+        this(threadId, runId, parentRunId, input, timestamp, rawEvent, null);
+    }
+
     /**
      * Creates a run-started event with only the required fields.
      *

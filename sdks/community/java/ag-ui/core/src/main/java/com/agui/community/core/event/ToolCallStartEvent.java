@@ -24,6 +24,11 @@ public record ToolCallStartEvent(String toolCallId, String toolCallName, String 
         Objects.requireNonNull(toolCallName, "toolCallName must not be null");
     }
 
+    public ToolCallStartEvent(String toolCallId, String toolCallName, String parentMessageId,
+                              Long timestamp, Object rawEvent) {
+        this(toolCallId, toolCallName, parentMessageId, timestamp, rawEvent, null);
+    }
+
     /**
      * Creates a tool-call-start event with the required fields.
      *

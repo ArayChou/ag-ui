@@ -23,6 +23,10 @@ public record ToolCallArgsEvent(String toolCallId, String delta, Long timestamp,
         Objects.requireNonNull(delta, "delta must not be null");
     }
 
+    public ToolCallArgsEvent(String toolCallId, String delta, Long timestamp, Object rawEvent) {
+        this(toolCallId, delta, timestamp, rawEvent, null);
+    }
+
     /**
      * Creates a tool-call-args event with the required fields.
      *
